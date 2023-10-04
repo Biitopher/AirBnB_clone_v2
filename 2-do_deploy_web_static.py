@@ -6,7 +6,6 @@ from fabric.api import *
 import os path import exists
 from datetime import datetime
 
-
 env.hosts = ['34.229.69.25', '100.26.227.84']
 
 def do_deploy(archive_path):
