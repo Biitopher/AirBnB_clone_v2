@@ -7,8 +7,7 @@ import os
 from datetime import datetime
 
 
-env.user = 'your_ssh_username'
-env.hosts = ['your_web_server_ip_1', 'your_web_server_ip_2']
+env.hosts = ['34.229.69.25', '100.26.227.84']
 
 def do_deploy(archive_path):
     """Distributes an archive to the web servers."""
@@ -30,7 +29,7 @@ def do_deploy(archive_path):
         run('rm -f /data/web_static/current')
         
         run('ln -s /data/web_static/releases/{} /data/web_static/current'.format(
-            folder_name))
+            folder_name)) 
         
         print("New version deployed!")
         return True
