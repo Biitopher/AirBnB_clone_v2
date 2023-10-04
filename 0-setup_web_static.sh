@@ -19,6 +19,6 @@ sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
 
 sudo chown -R ubuntu:ubuntu /data/
 
-sudo sed -i "/location \/ {/a $nginx_config" "$config_file"
+sudo sed -i '51 i \\n\tlocation /hbnb_static {\n\talias /data/web_static/current;\n\t}' /etc/nginx/sites-available/default
 
 sudo service nginx restart
