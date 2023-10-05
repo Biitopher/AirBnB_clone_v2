@@ -9,10 +9,11 @@ from datetime import datetime
 env.hosts = ['34.229.69.25', '100.26.227.84']
 env.user = 'Ubuntu'
 
+
 def do_deploy(archive_path):
-	"""Distributes an archive to the web servers."""
-	if not os.path.exists(archive_path):
-        return False
+    """Distributes an archive to the web servers."""
+    if not os.path.exists(archive_path):
+         return False
 
     try:
         put(archive_path, '/tmp/')
