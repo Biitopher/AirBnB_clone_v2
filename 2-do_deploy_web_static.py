@@ -27,14 +27,17 @@ def do_deploy(archive_path):
 
         run('mkdir -p {}{}/'.format(deployment_path, archive_name))
 
-        run('tar -xzf /tmp/{} -C {}{}/'.format(file_name, deployment_path, archive_name))
+        run('tar -xzf /tmp/{} -C {}{}/'.format(
+            file_name, deployment_path, archive_name))
         run('rm /tmp/{}'.format(file_name))
 
-        run('mv {0}{1}/web_static/* {0}{1}/'.format(deployment_path, archive_name))
+        run('mv {0}{1}/web_static/* {0}{1}/'.format(
+            deployment_path, archive_name))
         run('rm -rf {}{}/web_static'.format(deployment_path, archive_name))
 
         run('rm -rf /data/web_static/current')
-        run('ln -s {}{}/ /data/web_static/current'.format(deployment_path, archive_name))
+        run('ln -s {}{}/ /data/web_static/current'.format(
+            deployment_path, archive_name))
 
         print("New version deployed successfully!")
         return True
