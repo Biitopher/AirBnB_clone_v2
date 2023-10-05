@@ -1,11 +1,9 @@
 #!/usr/bin/python3
 """Using function do deploy"""
 
-
-from fabric.api import *
+from fabric.api import put, run, env
 import os import exists
 from datetime import datetime
-
 env.hosts = ['34.229.69.25', '100.26.227.84']
 env.user = 'ubuntu'
 
@@ -39,7 +37,7 @@ def do_deploy(archive_path):
         run('ln -s {}{}/ /data/web_static/current'.format(
             deployment_path, archive_name))
 
-        print("New version deployed successfully!")
+        print("New version successfully!")
         return True
     except Exception as e:
         print("Deployment failed: {}".format(str(e)))
