@@ -10,18 +10,11 @@ import os
 def do_pack():
     """Generates a .tgz archive from the web_static folder."""
     
-    if not os.path.exists('versions'):
-        os.makedirs('versions')
-
-    now = datetime.now()
-    archive_name = 'web_static_{}.tgz'.format(
-        now.strftime('%Y%m%d%H%M%S')
-    )
-
-    tar_command = 'tar -cvzf versions/{} web_static'.format(archive_name)
-    result = local(tar_command)
-
-    if result.succeeded:
-        return 'versions/{}'.format(archive_name)
-    else:
+     try:
+        current_time = datetime.now().strftime('%Y%m%d%H%M%S')
+        archive_path = "versions/web_static_{}.tgz".format(current_time)
+        local("mkdir -p versions")
+        local("tar -cvzf {} web_static".format(archive_path))
+        return archive_path
+    except Exception as e:
         return None
