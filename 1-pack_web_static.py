@@ -9,8 +9,8 @@ import os
 
 def do_pack():
     """Generates a .tgz archive from the web_static folder."""
-    
-     try:
+ 
+    try:
         current_time = datetime.now().strftime('%Y%m%d%H%M%S')
         archive_path = "versions/web_static_{}.tgz".format(current_time)
         local("mkdir -p versions")
