@@ -21,13 +21,13 @@ def do_deploy(archive_path):
 
     try:
         put(archive_path, "/tmp/")
-        run("mkdir -p {}/".format(no_tgz))
-        run("tar -xzf {} -C {}/".format(tmp, no_tgz))
-        run("rm {}".format(tmp))
-        run("mv {}/web_static/* {}/".format(no_tgz, no_tgz))
-        run("rm -rf {}/web_static".format(no_tgz))
-        run("rm -rf /data/web_static/current")
-        run("ln -s {}/ /data/web_static/current".format(no_tgz))
+        sudo("mkdir -p {}/".format(no_tgz))
+        sudo("tar -xzf {} -C {}/".format(tmp, no_tgz))
+        sudo("rm {}".format(tmp))
+        sudo("mv {}/web_static/* {}/".format(no_tgz, no_tgz))
+        sudo("rm -rf {}/web_static".format(no_tgz))
+        sudo("rm -rf /data/web_static/current")
+        sudo("ln -s {}/ /data/web_static/current".format(no_tgz))
         return True
 
     except Exception as e:
