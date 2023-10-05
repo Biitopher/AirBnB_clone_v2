@@ -7,6 +7,7 @@ import os
 from datetime import datetime
 
 env.hosts = ['34.229.69.25', '100.26.227.84']
+env.user = 'Ubuntu'
 
 def do_deploy(archive_path):
 	"""Distributes an archive to the web servers."""
@@ -34,5 +35,3 @@ def do_deploy(archive_path):
 
     except Exception as e:
         return False
-    
-
