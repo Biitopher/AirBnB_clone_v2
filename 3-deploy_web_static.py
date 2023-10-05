@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Creates and distributes an archive to your web servers, using function deploy"""
+"""Creates and distributes an archive to your web servers"""
 
 
 from fabric.api import local, put, run, env
