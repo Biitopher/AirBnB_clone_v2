@@ -42,11 +42,3 @@ def do_deploy(archive_path):
         return True
     except Exception as e:
         return False
-
-    if __name__ == "__main__":
-        archive_path = do_pack()
-    if archive_path:
-        result = do_deploy(archive_path)
-        if result:
-            exit(0)
-    exit(1)
