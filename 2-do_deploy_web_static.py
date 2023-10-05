@@ -27,10 +27,11 @@ def do_deploy(archive_path):
 
         run("rm /tmp/{}".format(archive_filename + ".tgz"))
 
-        run("mv /data/web_static/releases/{}/web_static/* /data/web_static/releases/{}/"
-            .format(archive_filename, archive_filename))
+        run("mv /data/web_static/releases/{}/web_static/* /data/web_static\
+                /releases/{}/".format(archive_filename, archive_filename))
 
-        run("rm -rf /data/web_static/releases/{}/web_static".format(archive_filename))
+        run("rm -rf /data/web_static/releases/{}/web_static".format(
+            archive_filename))
 
         run("rm -rf /data/web_static/current")
 
@@ -43,7 +44,7 @@ def do_deploy(archive_path):
         return False
 
     if __name__ == "__main__":
-    archive_path = do_pack()
+        archive_path = do_pack()
     if archive_path:
         result = do_deploy(archive_path)
         if result:
