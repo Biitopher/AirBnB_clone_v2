@@ -35,10 +35,12 @@ def is_number(n):
 
 @app.route('/number_template/<int:n>', strict_slashes=False)
 def number_template(n):
-    if isinstance(n, int):
-        return render_template('number_template.html', number=n)
+     if n % 2 == 0:
+        evenness = 'even'
     else:
-        return "Not a valid integer", 400
+        evenness = 'odd'
+    return render_template('6-number_odd_or_even.html', n=n,
+                           evenness=evenness)
 
 
 if __name__ == '__main__':
