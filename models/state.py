@@ -4,7 +4,6 @@ import models
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String, ForeignKey
 from sqlalchemy.orm import relationship
-from models import storage
 
 
 class State(BaseModel, Base):
@@ -25,7 +24,8 @@ class State(BaseModel, Base):
         def cities(self):
             """Returns the list of City objects linked to the current State."""
             cities_list = []
-            for city in list(storage.all(City).values()):
+            all_cities = models.storage.all(City)
+            for city in all_cities.values():
                 if city.state_id == self.id:
                     cities_list.append(city)
             return cities_list
