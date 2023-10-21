@@ -19,10 +19,12 @@ class State(BaseModel, Base):
         """Init state"""
         super().__init__(*args, **kwargs)
 
-    def cities(self):
-        """Returns list of City objects linked to current State."""
-        cities_list = []
-        for city in list(storage.all(City).values()):
-            if city.state_id == self.id:
-                cities_list.append(city)
-        return cities_list
+    if models.storage_t != "db":
+        @property
+        def cities(self):
+            """Returns the list of City objects linked to the current State."""
+            cities_list = []
+            for city in list(storage.all(City).values()):
+                if city.state_id == self.id:
+                    cities_list.append(city)
+            return cities_list
