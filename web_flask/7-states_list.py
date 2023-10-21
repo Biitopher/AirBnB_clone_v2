@@ -8,12 +8,6 @@ from models import *
 app = Flask(__name)
 
 
-@app.teardown_appcontext
-def close_storage(exception):
-    """Close the storage engine (FileStorage or DBStorage)."""
-    storage.close()
-
-
 @app.route('/states_list', strict_slashes=False)
 def states_list():
     """Display a list of all State objects sorted by name."""
@@ -21,6 +15,12 @@ def states_list():
     sorted_states = sorted(states.values(), key=lambda state: state.name)
 
     return render_template('7-states_list.html', states=sorted_states)
+
+
+@app.teardown_appcontext
+def close_storage(exception):
+    """Close the storage engine (FileStorage or DBStorage)."""
+    storage.close()
 
 
 if __name__ == "__main__":
