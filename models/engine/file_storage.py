@@ -1,8 +1,6 @@
 #!/usr/bin/python3
 """This module defines a class to manage file storage for hbnb clone"""
 import json
-
-
 from models.base_model import BaseModel
 from models.user import User
 from models.place import Place
@@ -12,10 +10,10 @@ from models.amenity import Amenity
 from models.review import Review
 
 classes = {
-            'BaseModel': BaseModel, 'User': User, 'Place': Place,
-            'State': State, 'City': City, 'Amenity': Amenity,
-            'Review': Review
-          }
+    'BaseModel': BaseModel, 'User': User, 'Place': Place,
+    'State': State, 'City': City, 'Amenity': Amenity,
+    'Review': Review
+}
 
 
 class FileStorage:
@@ -54,7 +52,7 @@ class FileStorage:
             for key in data:
                 self.__objects[key] = (classes[data[key]["__class__"]]
                                        (**data[key]))
-        except:
+        except Exception as e:
             pass
 
     def delete(self, obj=None):
