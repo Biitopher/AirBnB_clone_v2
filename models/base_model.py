@@ -8,15 +8,20 @@ from sqlalchemy import Column, String, DateTime
 
 
 time_format = "%Y-%m-%dT%H:%M:%S.%f"
-Base = declarative_base()
+if models.storage_type == "db":
+    Base = declarative_base()
+else:
+    Base = object
 
 
 class BaseModel:
     """A base class for all hbnb models"""
     if models.storage_type == 'db':
         id = Column(String(60), primary_key=True, nullable=False)
-        created_at = Column(DateTime, default=datetime.utcnow(), nullable=False)
-        updated_at = Column(DateTime, default=datetime.utcnow(), nullable=False)
+        created_at = Column(DateTime, default=datetime.utcnow(),
+                            nullable=False)
+        updated_at = Column(DateTime, default=datetime.utcnow(),
+                            nullable=False)
 
     def __init__(self, *args, **kwargs):
         """Initialization of the base model"""
@@ -48,10 +53,9 @@ class BaseModel:
 
     def save(self):
         """Updates updated_at with current time when instance is changed"""
-        from models import storage
         self.updated_at = datetime.now()
-        storage.new(self)
-        storage.save()
+        models.storage.new(self)
+        models.storage.save()
 
     def to_dict(self):
         """Returns Dict of Key/Value"""
@@ -69,4 +73,4 @@ class BaseModel:
 
     def delete(self):
         """Delete instance from Storage"""
-        models.storage.delete(self)
+        models.storage.delete(self) is storage.delete(self)
