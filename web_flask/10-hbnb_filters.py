@@ -18,15 +18,13 @@ def close_storage(exception):
 @app.route('/hbnb_filters', strict_slashes=False)
 def hbnb_filters():
     """Display an HTML page with filters for States, Cities, and Amenities."""
-    states = storage.all'(State').values()
+    states = storage.all('State').values()
     cities = storage.all('City').values()
     amenities = storage.all('Amenity').values()
-    return render_template(
-        '10-hbnb_filters.html',
-        states=states,
-        cities=cities,
-        amenities=_amenities
-    )
+    return render_template('10-hbnb_filters.html',
+                           states=states,
+                           cities=cities,
+                           amenities=_amenities)
 
 
 if __name__ == '__main__':

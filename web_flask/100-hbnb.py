@@ -11,7 +11,8 @@ from shutil import copyfile
 app = Flask(__name__)
 
 
-static_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "web_flask/static")
+static_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                          "web_flask/static")
 
 
 @app.teardown_appcontext
@@ -23,7 +24,8 @@ def close_storage(exception):
 @app.route('/hbnb_filters', strict_slashes=False)
 def hbnb_filters():
     """Display an HTML page with filters for States, Cities, and Amenities."""
-    css_files = ["3-footer.css", "3-header.css", "4-common.css", "6-filters.css"]
+    css_files = ["3-footer.css", "3-header.css", "4-common.css",
+                 "6-filters.css"]
     for css_file in css_files:
         source_css = os.path.join("web_static/styles", css_file)
         destination_css = os.path.join(static_dir, "styles", css_file)
