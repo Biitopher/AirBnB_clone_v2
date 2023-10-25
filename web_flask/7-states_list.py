@@ -5,7 +5,6 @@ import models
 from flask import Flask, render_template
 from models import storage
 from models.state import State
-from os import getenv
 app = Flask(__name__)
 
 
@@ -13,7 +12,7 @@ app = Flask(__name__)
 def states_list():
     """Display a list of all State objects sorted by name."""
     states = storage.all(State).values()
-    sorted_states = sorted(list(states.values()),
+    sorted_states = sorted(list(states),
                            key=lambda state: state.name)
 
     return render_template('7-states_list.html', states=sorted_states)
