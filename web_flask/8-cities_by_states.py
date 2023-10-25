@@ -8,14 +8,12 @@ from models.state import State
 app = Flask(__name__)
 
 
-@app.route('/states', strict_slashes=False)
-@app.route('/states/<state_id>', strict_slashes=False)
+@app.route('/cities_by_states', strict_slashes=False)
 def states(state_id=None):
     """Displays states and cities list in alphabetical order"""
-    states = storage.all("State")
-    if state_id is not None:
-        state_id = 'State.' + state_id
-    return render_template('8-cities_by_states.html', states=states, state_id=state_id)
+    states = storage.all("State").values()
+    return render_template('8-cities_by_states.html', states=states,
+                           state_id=state_id)
 
 
 @app.teardown_appcontext
